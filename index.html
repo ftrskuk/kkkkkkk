@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flashcard Generator</title>
+  <link rel="stylesheet" href="index.css" />
+  <script type="module" src="index.tsx"></script>
+</head>
+<body>
+  <script type="importmap">
+  {
+    "imports": {
+      "@google/genai": "https://esm.sh/@google/genai@^0.7.0"
+    }
+  }
+  </script>
+  <!-- Add Google Fonts Link -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+
+  <div class="container">
+    <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <svg class="sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.64 5.64c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41zm12.72 12.72c.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41zM5.64 18.36c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0zm12.72-12.72c-.39.39-.39 1.02 0 1.41.39.39 1.02.39 1.41 0 .39-.39.39-1.02 0-1.41-.39-.39-1.02-.39-1.41 0z"/></svg>
+        <svg class="moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M9.37 5.51A7.35 7.35 0 0 0 9.1 7.5c0 4.08 3.32 7.4 7.4 7.4.68 0 1.35-.09 1.99-.27C17.45 18.2 14.9 20 12 20c-4.41 0-8-3.59-8-8s3.59-8 8-8c.34 0 .68.02 1.01.07-.37.31-.7.66-1 .99-.36.37-.69.78-1 1.22-.32.44-.61.92-.85 1.42z"/></svg>
+    </button>
+    <h1>Flashcard Generator</h1>
+    <p>
+      Enter a topic, paste text, or provide a URL to generate flashcards using the Gemini API.
+    </p>
+    <div class="input-area">
+      <textarea
+        id="topicInput"
+        placeholder="e.g., Photosynthesis, https://en.wikipedia.org/wiki/Roman_Empire, or paste your notes here..."
+      ></textarea>
+      <div class="input-controls">
+         <input type="file" id="fileInput" accept=".txt,.md,.csv" hidden />
+         <button id="importFileButton" class="secondary-button">Import File</button>
+      </div>
+    </div>
+    <div class="main-controls">
+        <button id="generateButton">Generate Flashcards</button>
+        <button id="exportCsvButton" class="secondary-button" hidden>Export as CSV</button>
+    </div>
+    <div id="errorMessage" class="error-message"></div>
+    <div id="flashcardsContainer" class="flashcards-container">
+      <!-- Flashcards will be generated here -->
+    </div>
+    <footer>
+        <p>Powered by Gemini</p>
+    </footer>
+  </div>
+</body>
+</html>
